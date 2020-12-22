@@ -13,7 +13,6 @@ RUN apt-get update && \
     apt-get install -y texlive-fonts-extra
 
 RUN R -e "tinytex::tlmgr_update()"
-RUN R -e "tinytex::tlmgr_install('fira')"
 RUN R -e "tinytex::tlmgr_install('firamath')"
 RUN R -e "tinytex::tlmgr_install('beamer')"
 RUN R -e "tinytex::tlmgr_install('beamertheme-metropolis')"
