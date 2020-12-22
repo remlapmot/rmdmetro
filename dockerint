@@ -1,0 +1,3 @@
+#!/usr/bin/env bash
+docker build -t rmdmetro .
+docker run -e PASSWORD=open -p 8787:8787 -it rmdmetro /bin/bash
