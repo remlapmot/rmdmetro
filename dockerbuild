@@ -2,4 +2,4 @@
 docker build -t rmdmetropolis .
 docker build -t example ./example
 docker run example
-docker cp $(docker ps -alq):/home/example/example.pdf example.pdf
+docker cp $(docker ps -alq):/home/example/example.pdf ./example/example.pdf
