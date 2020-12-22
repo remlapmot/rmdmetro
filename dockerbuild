@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+docker image rm -f rmdmetropolis
 docker build -t rmdmetropolis .
 docker build -t example ./example
 docker run example
