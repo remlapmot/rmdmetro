@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-docker image rm -f rmdmetro
+# docker image rm -f rmdmetro
 docker build -t rmdmetro . --build-arg R=4.0.2
 docker build -t example2 ./example
 docker run example2
