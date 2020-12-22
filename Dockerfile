@@ -51,7 +51,19 @@ RUN R -e "tinytex::tlmgr_install('caption')"
 # advice as per https://github.com/matze/mtheme/issues/280#issuecomment-454041741
 # and https://askubuntu.com/questions/1174423/how-can-i-make-the-ubuntu-see-latex-fonts-installed-through-texlive
 # and https://tex.stackexchange.com/questions/257231/using-the-tex-live-fonts-in-xelatex/257232#257232
-# RUN wget "http://www.tug.org/texlive///Contents/live/texmf-var/fonts/conf/texlive-fontconfig.conf" && \
-#   mv texlive-fontconfig.conf /etc/fonts/conf.d/09-texlive-fonts.conf
-COPY 09-texlive-fonts.conf /etc/fonts/conf.d/09-texlive-fonts.conf
+# basic file here http://www.tug.org/texlive///Contents/live/texmf-var/fonts/conf/texlive-fontconfig.conf
+ENV conffile=/etc/fonts/conf.d/09-texlive-fonts.conf
+RUN echo '<?xml version="1.0"?>' > $conffile
+RUN echo '<!DOCTYPE fontconfig SYSTEM "fonts.dtd">' >> $conffile
+RUN echo '<fontconfig>' >> $conffile
+RUN echo '<dir>/usr/share/texlive/texmf-dist/fonts/opentype</dir>' >> $conffile
+RUN echo '<dir>/usr/share/texlive/texmf-dist/fonts/truetype</dir>' >> $conffile
+RUN echo '<dir>/usr/share/texlive/texmf-dist/fonts/type1</dir>' >> $conffile
+RUN echo '<dir>/usr/local/texlive/texmf-local/fonts/opentype</dir>' >> $conffile
+RUN echo '<dir>/usr/local/texlive/texmf-local/fonts/truetype</dir>' >> $conffile
+RUN echo '<dir>/usr/local/texlive/texmf-local/fonts/type1</dir>' >> $conffile
+RUN echo '<dir>/usr/local/texlive/texmf-dist/fonts/type1</dir>' >> $conffile
+RUN echo '<dir>/opt/texlive/texmf-local/fonts/opentype</dir>' >> $conffile
+RUN echo '<dir>/opt/texlive/texmf-local/fonts/type1</dir>' >> $conffile
+RUN echo '</fontconfig>' >> $conffile
 RUN fc-cache -fsv
