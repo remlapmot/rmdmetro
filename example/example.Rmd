@@ -37,9 +37,6 @@ biblio-title: References
 knitr::opts_chunk$set(fig.align = "center", 
                       out.extra = 'keepaspectratio',
                       echo = FALSE)
-suppressPackageStartupMessages({
-  library(tidyverse)
-})
 options(digits=3)
 ```
 
