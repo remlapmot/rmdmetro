@@ -1,4 +1,12 @@
 ARG R=latest
+
+# LABEL maintainer="Tom Palmer <remlapmot@hotmail.com>" \
+#       org.opencontainers.image.authors="Tom Palmer" \
+#       author.orcid="0000-0003-4655-4511" \
+#       org.opencontainers.image.url="https://hub.docker.com/repository/docker/remlapmot/rmdmetropolis" \
+#       org.label-schema.vcs-url="https://github.com/remlapmot/rmdmetropolis" \
+#       org.label-schema.license="GPL-2.0"
+
 FROM rocker/verse:${R}
 
 # install Fira Code
