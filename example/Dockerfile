@@ -1,4 +1,5 @@
 FROM rmdmetropolis
+RUN R -e "install.packages('reshape')"
 RUN mkdir /home/example
 COPY example.Rmd /home/example/example.Rmd
 COPY bibliography.bib /home/example/bibliography.bib 
