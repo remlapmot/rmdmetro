@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-docker image rm -f rmdmetro
+# docker image rm -f rmdmetro
 docker build -t rmdmetro .
 docker build -t example ./example
 docker run example
