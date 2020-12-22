@@ -17,10 +17,6 @@ RUN add-apt-repository "deb http://archive.ubuntu.com/ubuntu $(lsb_release -sc) 
 RUN apt-get update && \
     apt-get install fonts-firacode
 
-# install fira (Fira Sans and Fira Mono) and firamath (Fira Math)
-RUN apt-get update && \
-    apt-get install -y texlive-fonts-extra
-
 RUN R -e "tinytex::tlmgr_update()"
 RUN R -e "tinytex::tlmgr_install('firamath')"
 RUN R -e "tinytex::tlmgr_install('beamer')"
