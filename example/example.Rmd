@@ -1,0 +1,101 @@
+---
+author: "Tom Palmer"
+title: "An example Metropolis Beamer presentation using R Markdown compiled in the rmdmetropolis Docker container"
+date: "`r format(Sys.time(), '%d %B %Y')`"
+output:
+  beamer_presentation:
+    toc: true
+    slide_level: 2
+    theme: metropolis
+    latex_engine: xelatex
+    citation_package: biblatex
+    incremental: no
+fontsize: 11pt
+classoption:
+ - compress
+ - "aspectratio=169"
+header-includes:
+ \hypersetup{colorlinks, filecolor=red, citecolor=black, linkcolor=brown, urlcolor=blue}
+ \setbeamertemplate{frametitle continuation}{}
+ \usepackage{appendixnumberbeamer}
+ \usepackage[authordate, backend=biber, url=false, isbn=false, eprint=false, doi=false, uniquename=false, giveninits=true, maxcitenames=2]{biblatex-chicago}
+ \renewcommand*{\bibfont}{\scriptsize}
+ \DeclareMathOperator{\E}{\mathbb{E}}
+ \setsansfont[BoldFont={Fira Sans SemiBold}]{Fira Sans Book}
+ \renewcommand\UrlFont{\sffamily}
+ \setmathfont{Fira Math}
+ \setmonofont[Contextuals={Alternate}]{Fira Code}
+ \newcommand{\ind}{\perp \!\!\! \perp}
+ \makeatletter
+ \beamer@ignorenonframefalse
+ \makeatother
+bibliography: bibliography.bib
+biblio-title: References
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(fig.align = "center", 
+                      out.extra = 'keepaspectratio',
+                      echo = FALSE)
+suppressPackageStartupMessages({
+  library(tidyverse)
+})
+options(digits=3)
+```
+
+# Part 1
+
+## Introduction{.allowframebreaks .t}
+
+- This is a test
+  - of the Docker container
+
+## A slide with a citation{.allowframebreaks .t}
+
+* @greenland-2011 define collapsibility as
+\vspace{.3cm}
+
+> When an adjustment does not alter a measure, the measure is said to be collapsible over *C* or invariant with respect to the adjustment. Conversely, if an adjustment alters a measure, the measure is said to be non-collapsible over *C*.
+
+## A slide with some maths{.allowframebreaks .t}
+
+- @neuhaus-1993 explained that where $f(p)$ is the link function
+  - GLMs: $f(\E[Y]) = \eta$
+  - e.g. logit link; $\log\left(\frac{p}{1-p}\right) = \eta$
+- $\nu$ is the conditional association between $X$ and $Y$ (on the scale of the linear predictor)
+- Characteristic collapsibility function (CCF) $g_{\nu}(p)$, named by @daniel-2020, maps $P(Y|X=0,C)$ to $P(Y|X=1,C)$ (e.g. part (b) of first figure)
+
+$$
+\text{CCF:}\ g_\nu(p) = f^{-1}\left\{ f(p) + \nu \right\}
+$$
+
+- Take away: **A parameter is said to be non-collapsible when its CCF is non-linear**
+
+# Part 2
+
+## A slide with some code and output{.allowframebreaks .t}
+
+```{r}
+set.seed(8910)
+x <- c(0,0,1,1,0,0,1,1)
+y <- c(0,1,0,1,0,1,0,1)
+c <- c(0,0,0,0,1,1,1,1)
+r <- c(20,5,15,10,10,15,5,20)
+dat <- data.frame(x,y,c,r)
+datlong <- reshape::untable(dat[,1:3], num = dat$r)
+```
+
+* Estimate the marginal odds ratio
+```{r echo=TRUE}
+fitor <- glm(y ~ x, data = datlong, family = binomial)
+```
+
+* A nice kable table
+```{r}
+knitr::kable(exp(cbind(coef(fitor), confint.default(fitor))))
+```
+
+## A slide with a plot{.allowframebreaks .t}
+```{r, out.height="75%"}
+plot(1:10)
+```
