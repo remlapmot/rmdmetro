@@ -1,3 +1,4 @@
+ARG R=latest
 FROM rocker/verse:${R}
 
 # install Fira Code
