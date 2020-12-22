@@ -17,8 +17,16 @@ RUN add-apt-repository "deb http://archive.ubuntu.com/ubuntu $(lsb_release -sc) 
 RUN apt-get update && \
     apt-get install fonts-firacode
 
+# update texlive manager
 RUN R -e "tinytex::tlmgr_update()"
+
+# install Fira Sans and Fira Mono
+RUN R -e "tinytex::tlmgr_install('fira')"
+
+# install Fira Math
 RUN R -e "tinytex::tlmgr_install('firamath')"
+
+# install additional required texlive packages
 RUN R -e "tinytex::tlmgr_install('beamer')"
 RUN R -e "tinytex::tlmgr_install('beamertheme-metropolis')"
 RUN R -e "tinytex::tlmgr_install('infwarerr')"
