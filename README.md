@@ -1,5 +1,5 @@
-# rmdmetropolis
-Docker container for compiling Metropolis Beamer in R Markdown
+# rmdmetro
+A Docker container for compiling Metropolis Beamer presentations in R Markdown.
 
 * Compile the example using
 ```
