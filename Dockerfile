@@ -9,8 +9,8 @@ RUN apt-get update && \
     apt-get install fonts-firacode
 
 # install fira (Fira Sans and Fira Mono) and firamath (Fira Math)
-# RUN apt-get update && \
-#     apt-get install -y texlive-fonts-extra
+RUN apt-get update && \
+    apt-get install -y texlive-fonts-extra
 
 RUN R -e "tinytex::tlmgr_update()"
 RUN R -e "tinytex::tlmgr_install('fira')"
