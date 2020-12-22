@@ -1,4 +1,4 @@
-FROM rocker/verse
+FROM rocker/verse:${R}
 
 # install Fira Code
 RUN apt-get update && \
