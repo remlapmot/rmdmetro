@@ -38,8 +38,7 @@ RUN R -e "tinytex::tlmgr_install('caption')"
 # advice as per https://github.com/matze/mtheme/issues/280#issuecomment-454041741
 # and https://askubuntu.com/questions/1174423/how-can-i-make-the-ubuntu-see-latex-fonts-installed-through-texlive
 # and https://tex.stackexchange.com/questions/257231/using-the-tex-live-fonts-in-xelatex/257232#257232
-# short version of file is here http://www.tug.org/texlive///Contents/live/texmf-var/fonts/conf/texlive-fontconfig.conf
-
-RUN wget "http://www.tug.org/texlive///Contents/live/texmf-var/fonts/conf/texlive-fontconfig.conf" && \
-  mv texlive-fontconfig.conf /etc/fonts/conf.d/09-texlive-fonts.conf
+# RUN wget "http://www.tug.org/texlive///Contents/live/texmf-var/fonts/conf/texlive-fontconfig.conf" && \
+#   mv texlive-fontconfig.conf /etc/fonts/conf.d/09-texlive-fonts.conf
+COPY 09-texlive-fonts.conf /etc/fonts/conf.d/09-texlive-fonts.conf
 RUN fc-cache -fsv
