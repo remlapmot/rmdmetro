@@ -9,6 +9,8 @@ ARG R=latest
 
 FROM rocker/verse:${R}
 
+RUN apt-get update --fix-missing
+
 # install Fira Code
 RUN apt-get update && \
     apt-get install -y software-properties-common && \
