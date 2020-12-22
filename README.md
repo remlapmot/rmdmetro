@@ -5,3 +5,8 @@ A Docker container for compiling Metropolis Beamer presentations in R Markdown.
 ```
 ./dockerbuild
 ```
+
+* The commands in `dockerint` launch the container at the bash shell
+```
+./dockerint
+```
