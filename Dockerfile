@@ -19,11 +19,14 @@ RUN add-apt-repository "deb http://archive.ubuntu.com/ubuntu $(lsb_release -sc) 
 RUN apt-get update && \
     apt-get install fonts-firacode
 
+# install Fira Sans and Fira Mono
+RUN apt-get install -y texlive-fonts-extra
+
 # update texlive manager
 RUN R -e "tinytex::tlmgr_update()"
 
-# install Fira Sans and Fira Mono
-RUN R -e "tinytex::tlmgr_install('fira')"
+# alternative code to install Fira Sans and Fira Mono
+# RUN R -e "tinytex::tlmgr_install('fira')" # not required
 
 # install Fira Math
 RUN R -e "tinytex::tlmgr_install('firamath')"
