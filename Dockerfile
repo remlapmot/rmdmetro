@@ -68,7 +68,5 @@ RUN echo '<dir>/usr/local/texlive/texmf-local/fonts/opentype</dir>' >> $conffile
 RUN echo '<dir>/usr/local/texlive/texmf-local/fonts/truetype</dir>' >> $conffile
 RUN echo '<dir>/usr/local/texlive/texmf-local/fonts/type1</dir>' >> $conffile
 RUN echo '<dir>/usr/local/texlive/texmf-dist/fonts/type1</dir>' >> $conffile
-RUN echo '<dir>/opt/texlive/texmf-local/fonts/opentype</dir>' >> $conffile
-RUN echo '<dir>/opt/texlive/texmf-local/fonts/type1</dir>' >> $conffile
 RUN echo '</fontconfig>' >> $conffile
 RUN fc-cache -fsv
