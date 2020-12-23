@@ -3,4 +3,4 @@
 docker build -t rmdmetro .
 docker build -t binbexample ./binb-example
 docker run binbexample
-docker cp $(docker ps -alq):/home/binb-example/myslides.pdf ./binb-example/myslides.pdf
+docker cp $(docker ps -alq):/home/binb-example/myslides/myslides.pdf ./binb-example/myslides/myslides.pdf
