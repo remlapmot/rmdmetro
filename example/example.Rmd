@@ -1,6 +1,6 @@
 ---
 author: "Tom Palmer"
-title: "An example Metropolis Beamer presentation using R Markdown compiled in the rmdmetropolis Docker container"
+title: "An example Metropolis Beamer presentation using R Markdown compiled in the rmdmetro Docker container"
 date: "`r format(Sys.time(), '%d %B %Y')`"
 output:
   beamer_presentation:
