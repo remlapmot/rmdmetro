@@ -51,6 +51,10 @@ RUN R -e "tinytex::tlmgr_install('fancyvrb')"
 RUN R -e "tinytex::tlmgr_install('framed')"
 RUN R -e "tinytex::tlmgr_install('booktabs')"
 RUN R -e "tinytex::tlmgr_install('caption')"
+RUN R -e "tinytex::tlmgr_install('grffile')"
+RUN R -e "tinytex::tlmgr_install('mathspec')"
+
+RUN R -e "install.packages('binb')"
 
 # enable using texlive fonts with xelatex
 # advice as per https://github.com/matze/mtheme/issues/280#issuecomment-454041741
