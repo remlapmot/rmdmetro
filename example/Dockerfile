@@ -1,4 +1,4 @@
-FROM rmdmetropolis
+FROM rmdmetro
 RUN R -e "install.packages('reshape')"
 RUN mkdir /home/example
 COPY example.Rmd /home/example/example.Rmd
