@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+# docker image rm -f rmdmetro
+docker build -t rmdmetro .
+docker build -t binbexample ./binb-example
+docker run binbexample
+docker cp $(docker ps -alq):/home/binb-example/myslides.pdf ./binb-example/myslides.pdf
