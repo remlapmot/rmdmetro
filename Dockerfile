@@ -26,7 +26,7 @@ RUN apt-get install -y texlive-fonts-extra
 RUN R -e "tinytex::tlmgr_update()"
 
 # alternative code to install Fira Sans and Fira Mono
-# RUN R -e "tinytex::tlmgr_install('fira')" # not required
+RUN R -e "tinytex::tlmgr_install('fira')"
 
 # install Fira Math
 RUN R -e "tinytex::tlmgr_install('firamath')"
