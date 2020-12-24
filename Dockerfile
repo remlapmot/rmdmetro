@@ -30,7 +30,7 @@ RUN R -e "tinytex::tlmgr_install('fira')"
 
 # install Fira Math
 RUN R -e "tinytex::tlmgr_install('firamath')"
-RUN R -e "tinytex::tlmgr_install('firamath-otf')"
+# RUN R -e "tinytex::tlmgr_install('firamath-otf')"
 
 # install additional required texlive packages
 RUN R -e "tinytex::tlmgr_install('beamer')"
