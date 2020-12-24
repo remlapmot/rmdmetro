@@ -21,11 +21,11 @@ header-includes:
  \usepackage[authordate, backend=biber, url=false, isbn=false, eprint=false, doi=false, uniquename=false, giveninits=true, maxcitenames=2]{biblatex-chicago}
  \renewcommand*{\bibfont}{\scriptsize}
  \DeclareMathOperator{\E}{\mathbb{E}}
+ \setmainfont{Fira Sans Book}
  \setsansfont[BoldFont={Fira Sans SemiBold}]{Fira Sans Book}
- \renewcommand\UrlFont{\sffamily}
- \setmainfont{Fira Code}
  \setmathfont{Fira Math} 
  \setmonofont[Contextuals={Alternate}]{Fira Code}
+ \renewcommand\UrlFont{\sffamily}
  \newcommand{\ind}{\perp \!\!\! \perp}
  \makeatletter
  \beamer@ignorenonframefalse
