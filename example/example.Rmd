@@ -23,7 +23,8 @@ header-includes:
  \DeclareMathOperator{\E}{\mathbb{E}}
  \setsansfont[BoldFont={Fira Sans SemiBold}]{Fira Sans Book}
  \renewcommand\UrlFont{\sffamily}
- \setmathfont{Fira Math}
+ \setmainfont{Fira Code}
+ \setmathfont{Fira Math} 
  \setmonofont[Contextuals={Alternate}]{Fira Code}
  \newcommand{\ind}{\perp \!\!\! \perp}
  \makeatletter
