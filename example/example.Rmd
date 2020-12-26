@@ -4,7 +4,6 @@ title: "An example Metropolis Beamer presentation using R Markdown compiled in t
 date: "`r format(Sys.time(), '%d %B %Y')`"
 output:
   beamer_presentation:
-    toc: true
     slide_level: 2
     theme: metropolis
     latex_engine: xelatex
@@ -27,6 +26,7 @@ header-includes:
  \setmonofont[Contextuals={Alternate}]{Fira Code}
  \renewcommand\UrlFont{\sffamily}
  \newcommand{\ind}{\perp \!\!\! \perp}
+ \metroset{sectionpage=none}
  \makeatletter
  \beamer@ignorenonframefalse
  \makeatother
@@ -40,6 +40,10 @@ knitr::opts_chunk$set(fig.align = "center",
                       echo = FALSE)
 options(digits=3)
 ```
+
+## Outline{.allowframebreaks .t}
+
+\tableofcontents
 
 # Part 1
 
