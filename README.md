@@ -19,7 +19,7 @@ or
 ./dockerbuild3
 ```
 
-* The commands in `dockerint` launch the container at the bash shell
+* The commands in `dockerint` launch the container at its bash shell
 ```
 ./dockerint
 ```
