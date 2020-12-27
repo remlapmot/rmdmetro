@@ -32,7 +32,7 @@ RUN R -e "tinytex::tlmgr_install('fira')"
 RUN R -e "tinytex::tlmgr_install('firamath')"
 # RUN R -e "tinytex::tlmgr_install('firamath-otf')"
 
-# install additional required texlive packages
+# install additional texlive packages
 RUN R -e "tinytex::tlmgr_install('beamer')"
 RUN R -e "tinytex::tlmgr_install('beamertheme-metropolis')"
 RUN R -e "tinytex::tlmgr_install('infwarerr')"
