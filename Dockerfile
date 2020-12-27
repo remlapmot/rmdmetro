@@ -54,6 +54,8 @@ RUN R -e "tinytex::tlmgr_install('booktabs')"
 RUN R -e "tinytex::tlmgr_install('caption')"
 RUN R -e "tinytex::tlmgr_install('grffile')"
 RUN R -e "tinytex::tlmgr_install('mathspec')"
+RUN R -e "tinytex::tlmgr_install('preview')"
+RUN R -e "tinytex::tlmgr_install('epstopdf-pkg')"
 
 # install additional R packages
 RUN R -e "install.packages('binb')"
