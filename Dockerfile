@@ -55,7 +55,11 @@ RUN R -e "tinytex::tlmgr_install('caption')"
 RUN R -e "tinytex::tlmgr_install('grffile')"
 RUN R -e "tinytex::tlmgr_install('mathspec')"
 
+# install additional R packages
 RUN R -e "install.packages('binb')"
+
+RUN apt-get update && apt-get install -y libpoppler-cpp-dev
+RUN R -e "install.packages('pdftools')"
 
 # enable using texlive fonts with xelatex
 # advice as per https://github.com/matze/mtheme/issues/280#issuecomment-454041741
