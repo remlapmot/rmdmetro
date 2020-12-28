@@ -2,3 +2,4 @@ dockerbuild*
 ./example
 ./binb-example
 dockerint*
+build*
