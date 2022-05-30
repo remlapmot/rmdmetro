@@ -4,7 +4,7 @@ A Docker container for compiling Metropolis Beamer presentations in R Markdown.
 The container installs the Fira Code, Fira Sans, Fira Mono, and Fira Math fonts.
 
 Create a Dockerfile based on this image such as the following, copying in the files needed for your R Markdown Metropolis Beamer presentation.
-```
+```dockerfile
 FROM remlapmot/rmdmetro
 RUN mkdir /home/example
 COPY example.Rmd /home/example/example.Rmd
