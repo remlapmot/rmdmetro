@@ -14,28 +14,28 @@ CMD cd /home/example \
 ```
 
 Then copy the compiled pdf from the container, with a docker cp command such as
-```
+```bash
 docker cp $(docker ps -alq):/home/example/example.pdf ./example/example.pdf
 ```
 
 * Compile the container with
-```
+```bash
 docker build -t rmdmetro .
 ```
 or 
-```
+```bash
 ./dockerbuild
 ```
 
 * Compile the examples with
-```
+```bash
 ./dockerbuild1
 ./dockerbuild2
 ./dockerbuild3
 ```
 
 * The commands in `dockerint` launch the container at its bash shell
-```
+```bash
 ./dockerint
 ```
 
