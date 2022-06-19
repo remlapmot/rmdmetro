@@ -2,5 +2,5 @@
 # docker image rm -f rmdmetro
 docker build -t rmdmetro . --build-arg R=4.0.2
 docker build -t example2 ./example
-docker run example2
+docker run --platform linux/amd64 example2
 docker cp $(docker ps -alq):/home/example/example.pdf ./example/example2.pdf
