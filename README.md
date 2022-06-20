@@ -12,7 +12,7 @@ COPY example.Rmd bibliography.bib ./
 CMD R -q -e "rmarkdown::render('example.Rmd', encoding = 'UTF-8')"
 ```
 
-Then copy the compiled pdf from the container, with a docker cp command such as
+Then copy the compiled pdf from the container, with a `docker cp` command such as
 ```bash
 docker cp $(docker ps -alq):/home/example/example.pdf ./example/example.pdf
 ```
@@ -33,7 +33,7 @@ or
 ./dockerbuild3
 ```
 
-* The commands in `dockerint` launch the container at its bash shell
+* The commands in `dockerint` launch the container interactively at its bash shell
 ```bash
 ./dockerint
 ```
