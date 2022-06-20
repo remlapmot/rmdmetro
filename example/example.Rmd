@@ -35,10 +35,10 @@ biblio-title: References
 ---
 
 ```{r setup, include=FALSE}
-knitr::opts_chunk$set(fig.align = "center", 
-                      out.extra = 'keepaspectratio',
+knitr::opts_chunk$set(fig.align = "center",
+                      out.extra = "keepaspectratio",
                       echo = FALSE)
-options(digits=3)
+options(digits = 3)
 ```
 
 ## Outline{.allowframebreaks .t}
@@ -79,12 +79,12 @@ $$
 
 ```{r}
 set.seed(8910)
-x <- c(0,0,1,1,0,0,1,1)
-y <- c(0,1,0,1,0,1,0,1)
-c <- c(0,0,0,0,1,1,1,1)
-r <- c(20,5,15,10,10,15,5,20)
-dat <- data.frame(x,y,c,r)
-datlong <- reshape::untable(dat[,1:3], num = dat$r)
+x <- c(0, 0, 1, 1, 0, 0, 1, 1)
+y <- c(0, 1, 0, 1, 0, 1, 0, 1)
+c <- c(0, 0, 0, 0, 1, 1, 1, 1)
+r <- c(20, 5, 15, 10, 10, 15, 5, 20)
+dat <- data.frame(x, y, c, r)
+datlong <- reshape::untable(dat[, 1:3], num = dat$r)
 ```
 
 * Estimate the marginal odds ratio
