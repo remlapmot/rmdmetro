@@ -7,75 +7,57 @@ LABEL maintainer="Tom Palmer <remlapmot@hotmail.com>" \
       org.label-schema.vcs-url="https://github.com/remlapmot/rmdmetro" \
       org.label-schema.license="GPL-2.0"
 
-RUN apt-get update --fix-missing
+# RUN rm /usr/lib/rstudio-server/bin/quarto/bin/pandoc && \
+#     ln -s /usr/local/bin/pandoc /usr/lib/rstudio-server/bin/quarto/bin/pandoc; \
 
-# install Fira Code
-RUN apt-get update && \
-    apt-get install -y software-properties-common && \
+# install Fira Code, Fira Sans, and Fira Mono; and libpoppler-cpp-dev (for pdftools R package)
+# add-apt-repository "deb http://archive.ubuntu.com/ubuntu $(lsb_release -sc) main universe restricted multiverse" && \
+RUN apt-get update --fix-missing && \
+    apt-get install -y --no-install-recommends fonts-firacode \
+                                               libpoppler-cpp-dev \
+                                               software-properties-common \
+                                               texlive-fonts-extra && \
+    apt-get autoremove -y && \
+    apt-get autoclean -y && \
     rm -rf /var/lib/apt/lists/*
-RUN add-apt-repository "deb http://archive.ubuntu.com/ubuntu $(lsb_release -sc) main universe restricted multiverse"
-RUN apt-get update && \
-    apt-get install fonts-firacode
-
-# install Fira Sans and Fira Mono
-RUN apt-get install -y texlive-fonts-extra
-
+    
+# R code
 # update texlive manager
-RUN R -e "tinytex::tlmgr_update()"
-
 # alternative code to install Fira Sans and Fira Mono
-RUN R -e "tinytex::tlmgr_install('fira')"
-
 # install Fira Math
-RUN R -e "tinytex::tlmgr_install('firamath')"
-# RUN R -e "tinytex::tlmgr_install('firamath-otf')"
-
 # install additional texlive packages
-RUN R -e "tinytex::tlmgr_install('beamer')"
-RUN R -e "tinytex::tlmgr_install('beamertheme-metropolis')"
-RUN R -e "tinytex::tlmgr_install('infwarerr')"
-RUN R -e "tinytex::tlmgr_install('kvoptions')"
-RUN R -e "tinytex::tlmgr_install('euenc')"
-RUN R -e "tinytex::tlmgr_install('fontspec')"
-RUN R -e "tinytex::tlmgr_install('unicode-math')"
-RUN R -e "tinytex::tlmgr_install('xunicode')"
-RUN R -e "tinytex::tlmgr_install('pgfopts')"
-RUN R -e "tinytex::tlmgr_install('appendixnumberbeamer')"
-RUN R -e "tinytex::tlmgr_install('biblatex-chicago')"
-RUN R -e "tinytex::tlmgr_install('xstring')"
-RUN R -e "tinytex::tlmgr_install('logreq')"
-RUN R -e "tinytex::tlmgr_install('biblatex')"
-RUN R -e "tinytex::tlmgr_install('biber')"
-RUN R -e "tinytex::tlmgr_install('fancyvrb')"
-RUN R -e "tinytex::tlmgr_install('framed')"
-RUN R -e "tinytex::tlmgr_install('booktabs')"
-RUN R -e "tinytex::tlmgr_install('caption')"
-RUN R -e "tinytex::tlmgr_install('grffile')"
-RUN R -e "tinytex::tlmgr_install('mathspec')"
-RUN R -e "tinytex::tlmgr_install('preview')"
-RUN R -e "tinytex::tlmgr_install('epstopdf-pkg')"
+RUN R -e "install.packages(c('binb', 'pdftools')); \
+          tinytex::tlmgr_install(c( \
+                                   'fira', \
+                                   'firamath', \
+                                   'beamer', \
+                                   'beamertheme-metropolis', \
+                                   'infwarerr', \
+                                   'kvoptions', \
+                                   'euenc', \
+                                   'fontspec', \
+                                   'unicode-math', \
+                                   'xunicode', \
+                                   'pgfopts', \
+                                   'appendixnumberbeamer', \
+                                   'biblatex-chicago', \
+                                   'xstring', \
+                                   'logreq', \
+                                   'biblatex', \
+                                   'biber', \
+                                   'fancyvrb', \
+                                   'framed', \
+                                   'booktabs', \
+                                   'caption', \
+                                   'grffile', \
+                                   'mathspec', \
+                                   'preview', \
+                                   'epstopdf-pkg'))"
 
-# install additional R packages
-RUN R -e "install.packages('binb')"
-
-RUN apt-get update && apt-get install -y libpoppler-cpp-dev
-RUN R -e "install.packages('pdftools')"
-
-# enable using texlive fonts with xelatex
+# Enable using texlive fonts with xelatex
 # advice as per https://github.com/matze/mtheme/issues/280#issuecomment-454041741
 # and https://askubuntu.com/questions/1174423/how-can-i-make-the-ubuntu-see-latex-fonts-installed-through-texlive
 # and https://tex.stackexchange.com/questions/257231/using-the-tex-live-fonts-in-xelatex/257232#257232
 # basic file here http://www.tug.org/texlive///Contents/live/texmf-var/fonts/conf/texlive-fontconfig.conf
-ENV conffile=/etc/fonts/conf.d/09-texlive-fonts.conf
-RUN echo '<?xml version="1.0"?>' > $conffile
-RUN echo '<!DOCTYPE fontconfig SYSTEM "fonts.dtd">' >> $conffile
-RUN echo '<fontconfig>' >> $conffile
-RUN echo '<dir>/usr/share/texlive/texmf-dist/fonts/opentype</dir>' >> $conffile
-RUN echo '<dir>/usr/share/texlive/texmf-dist/fonts/truetype</dir>' >> $conffile
-RUN echo '<dir>/usr/share/texlive/texmf-dist/fonts/type1</dir>' >> $conffile
-RUN echo '<dir>/usr/local/texlive/texmf-local/fonts/opentype</dir>' >> $conffile
-RUN echo '<dir>/usr/local/texlive/texmf-local/fonts/truetype</dir>' >> $conffile
-RUN echo '<dir>/usr/local/texlive/texmf-local/fonts/type1</dir>' >> $conffile
-RUN echo '<dir>/usr/local/texlive/texmf-dist/fonts/type1</dir>' >> $conffile
-RUN echo '</fontconfig>' >> $conffile
+COPY 09-texlive-fonts.conf /etc/fonts/conf.d/09-texlive-fonts.conf
 RUN fc-cache -fsv
