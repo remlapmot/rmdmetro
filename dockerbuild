@@ -1,3 +1,3 @@
 #!/usr/bin/env bash
 # docker image rm -f rmdmetro
-docker build -t rmdmetro .
+docker build --platform linux/amd64 -t rmdmetro .

@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 # build
-docker build -t remlapmot/rmdmetro .
+docker build --platform linux/amd64 -t remlapmot/rmdmetro .
 
 # push
 docker push remlapmot/rmdmetro
