@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 # docker image rm -f rmdmetro
-docker build -t rmdmetro .
-docker build -t example ./example
+docker build --platform linux/amd64 -t rmdmetro .
+docker build --platform linux/amd64 -t example ./example
 docker run --platform linux/amd64 -v ${PWD}/example:/home/example example
 #docker cp $(docker ps -alq):/home/example/example.pdf ./example/example.pdf
