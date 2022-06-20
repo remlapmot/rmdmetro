@@ -5,12 +5,11 @@ The container installs the Fira Code, Fira Sans, Fira Mono, and Fira Math fonts.
 
 Create a Dockerfile based on this image such as the following, copying in the files needed for your R Markdown Metropolis Beamer presentation.
 ```dockerfile
-FROM remlapmot/rmdmetro
-RUN mkdir /home/example
-COPY example.Rmd /home/example/example.Rmd
-COPY bibliography.bib /home/example/bibliography.bib 
-CMD cd /home/example \ 
-    && R -e "rmarkdown::render('example.Rmd', encoding = 'UTF-8')"
+FROM rmdmetro
+RUN R -q -e "install.packages('reshape')"
+WORKDIR /home/example
+COPY example.Rmd bibliography.bib ./
+CMD R -q -e "rmarkdown::render('example.Rmd', encoding = 'UTF-8')"
 ```
 
 Then copy the compiled pdf from the container, with a docker cp command such as
