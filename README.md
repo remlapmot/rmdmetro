@@ -19,7 +19,7 @@ docker cp $(docker ps -alq):/home/example/example.pdf ./example/example.pdf
 
 * Compile the container with
 ```bash
-docker build -t rmdmetro .
+docker build --platform linux/amd64 -t rmdmetro .
 ```
 or 
 ```bash
@@ -30,7 +30,6 @@ or
 ```bash
 ./dockerbuild1
 ./dockerbuild2
-./dockerbuild3
 ```
 
 * The commands in `dockerint` launch the container interactively at its bash shell

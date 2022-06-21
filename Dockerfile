@@ -1,5 +1,4 @@
-ARG R=latest
-FROM rocker/verse:${R}
+FROM rocker/verse:4.1.3
 LABEL maintainer="Tom Palmer <remlapmot@hotmail.com>" \
       org.opencontainers.image.authors="Tom Palmer" \
       author.orcid="0000-0003-4655-4511" \
@@ -7,8 +6,7 @@ LABEL maintainer="Tom Palmer <remlapmot@hotmail.com>" \
       org.label-schema.vcs-url="https://github.com/remlapmot/rmdmetro" \
       org.label-schema.license="GPL-2.0"
 
-# RUN rm /usr/lib/rstudio-server/bin/quarto/bin/pandoc && \
-#     ln -s /usr/local/bin/pandoc /usr/lib/rstudio-server/bin/quarto/bin/pandoc; \
+ENV RSPM=https://packagemanager.rstudio.com/all/__linux__/focal
 
 # install Fira Code, Fira Sans, and Fira Mono; and libpoppler-cpp-dev (for pdftools R package)
 # add-apt-repository "deb http://archive.ubuntu.com/ubuntu $(lsb_release -sc) main universe restricted multiverse" && \
@@ -19,40 +17,40 @@ RUN apt-get update --fix-missing && \
                                                texlive-fonts-extra && \
     apt-get autoremove -y && \
     apt-get autoclean -y && \
-    rm -rf /var/lib/apt/lists/*
+    rm -rf /var/lib/apt/lists/*; \
+    tlmgr install fira \
+                  firamath \
+                  beamer \
+                  beamertheme-metropolis \
+                  infwarerr \
+                  kvoptions \
+                  euenc \
+                  fontspec \
+                  unicode-math \
+                  xunicode \
+                  pgfopts \
+                  appendixnumberbeamer \
+                  biblatex-chicago \
+                  xstring \
+                  logreq \
+                  biblatex \
+                  biber \
+                  fancyvrb \
+                  framed \
+                  booktabs \
+                  caption \
+                  grffile \
+                  mathspec \
+                  preview \
+                  epstopdf-pkg
     
 # R code
 # update texlive manager
 # alternative code to install Fira Sans and Fira Mono
 # install Fira Math
 # install additional texlive packages
-RUN R -e "install.packages(c('binb', 'pdftools')); \
-          tinytex::tlmgr_install(c( \
-                                   'fira', \
-                                   'firamath', \
-                                   'beamer', \
-                                   'beamertheme-metropolis', \
-                                   'infwarerr', \
-                                   'kvoptions', \
-                                   'euenc', \
-                                   'fontspec', \
-                                   'unicode-math', \
-                                   'xunicode', \
-                                   'pgfopts', \
-                                   'appendixnumberbeamer', \
-                                   'biblatex-chicago', \
-                                   'xstring', \
-                                   'logreq', \
-                                   'biblatex', \
-                                   'biber', \
-                                   'fancyvrb', \
-                                   'framed', \
-                                   'booktabs', \
-                                   'caption', \
-                                   'grffile', \
-                                   'mathspec', \
-                                   'preview', \
-                                   'epstopdf-pkg'))"
+RUN R -e "install.packages(c('binb', 'pdftools'), \
+                           repos = '${RSPM}/2021-04-21+Y3JhbiwyOjE3NTA3NTI7NTZERjAzREE')"
 
 # Enable using texlive fonts with xelatex
 # advice as per https://github.com/matze/mtheme/issues/280#issuecomment-454041741
